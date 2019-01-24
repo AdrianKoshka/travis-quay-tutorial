@@ -1,0 +1,14 @@
+language: generic
+
+services:
+  - docker
+
+script:
+  - docker build -t quay.io/adrianlucrececeleste/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/adrianlucrececeleste/travis-quay-tutorial:latest .
+
+deploy:
+  - provider: script
+    script: bash docker_push
+    on:
+      tags: true
+      branch: master
